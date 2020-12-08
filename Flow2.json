@@ -1,0 +1,115 @@
+[
+    {
+        "id": "73bc1714.3e2828",
+        "type": "tab",
+        "label": "Flow2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d3c32e9c.7e3cc",
+        "type": "inject",
+        "z": "73bc1714.3e2828",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "116e87ab.1635b8"
+            ]
+        ]
+    },
+    {
+        "id": "116e87ab.1635b8",
+        "type": "function",
+        "z": "73bc1714.3e2828",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"UNfsEdWeHFYYTGTt\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "78e36202.5533dc",
+                "80d104f4.ad36f8"
+            ]
+        ]
+    },
+    {
+        "id": "78e36202.5533dc",
+        "type": "http request",
+        "z": "73bc1714.3e2828",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://api.mediatek.com/mcs/v2/devices/DIfiiQka/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "d699f58f.034248",
+                "48c2d9a6.60c788"
+            ]
+        ]
+    },
+    {
+        "id": "d699f58f.034248",
+        "type": "http response",
+        "z": "73bc1714.3e2828",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "48c2d9a6.60c788",
+        "type": "debug",
+        "z": "73bc1714.3e2828",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "80d104f4.ad36f8",
+        "type": "http request",
+        "z": "73bc1714.3e2828",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://api.mediatek.com/mcs/v2/devices/DIfiiQka/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 420,
+        "y": 40,
+        "wires": [
+            [
+                "48c2d9a6.60c788",
+                "d699f58f.034248"
+            ]
+        ]
+    }
+]
