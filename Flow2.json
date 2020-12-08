@@ -31,7 +31,7 @@
         "type": "function",
         "z": "73bc1714.3e2828",
         "name": "Payload",
-        "func": "msg.headers={\n    deviceKey:\"UNfsEdWeHFYYTGTt\"\n}\nreturn msg;",
+        "func": "msg.headers={\n    deviceKey:\"UNfsEdWeHFYYTGTt\"\n    };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 280,
