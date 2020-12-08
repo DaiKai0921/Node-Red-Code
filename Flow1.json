@@ -1,0 +1,143 @@
+[
+    {
+        "id": "a2c5608d.f5e82",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9ce3e0f4.885b8",
+        "type": "rpi-gpio out",
+        "z": "a2c5608d.f5e82",
+        "name": "Red LED",
+        "pin": "11",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 620,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "aca7f102.92254",
+        "type": "debug",
+        "z": "a2c5608d.f5e82",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 530,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d9a27b29.8caae8",
+        "type": "rpi-gpio in",
+        "z": "a2c5608d.f5e82",
+        "name": "Button",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 70,
+        "y": 80,
+        "wires": [
+            [
+                "aca7f102.92254",
+                "e601bbc0.395168"
+            ]
+        ]
+    },
+    {
+        "id": "e601bbc0.395168",
+        "type": "switch",
+        "z": "a2c5608d.f5e82",
+        "name": "if input is 1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "3dcc9497.2b161c"
+            ],
+            [
+                "44d7e5ba.5578ec"
+            ]
+        ]
+    },
+    {
+        "id": "3dcc9497.2b161c",
+        "type": "change",
+        "z": "a2c5608d.f5e82",
+        "name": "Change to 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "9ce3e0f4.885b8"
+            ]
+        ]
+    },
+    {
+        "id": "44d7e5ba.5578ec",
+        "type": "change",
+        "z": "a2c5608d.f5e82",
+        "name": "Change to 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "9ce3e0f4.885b8"
+            ]
+        ]
+    }
+]
