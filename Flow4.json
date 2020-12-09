@@ -1,0 +1,101 @@
+[
+    {
+        "id": "33c27f1a.f261c",
+        "type": "tab",
+        "label": "Flow4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5ec18b50.3eb694",
+        "type": "http in",
+        "z": "33c27f1a.f261c",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "1bcce1ea.ce06ae"
+            ]
+        ]
+    },
+    {
+        "id": "221c62ab.762c9e",
+        "type": "http response",
+        "z": "33c27f1a.f261c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 390,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "89bd8d4.3cc347",
+        "type": "debug",
+        "z": "33c27f1a.f261c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 400,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a795ad17.96843",
+        "type": "rpi-gpio in",
+        "z": "33c27f1a.f261c",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 70,
+        "y": 80,
+        "wires": [
+            [
+                "61f5bd92.04b304"
+            ]
+        ]
+    },
+    {
+        "id": "61f5bd92.04b304",
+        "type": "function",
+        "z": "33c27f1a.f261c",
+        "name": "Set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "89bd8d4.3cc347"
+            ]
+        ]
+    },
+    {
+        "id": "1bcce1ea.ce06ae",
+        "type": "function",
+        "z": "33c27f1a.f261c",
+        "name": "Get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 40,
+        "wires": [
+            [
+                "221c62ab.762c9e",
+                "89bd8d4.3cc347"
+            ]
+        ]
+    }
+]
